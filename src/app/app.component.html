@@ -1,0 +1,66 @@
+<div style="text-align:center">
+  <h2>Student List (Sorted by Name)</h2>
+  
+  <!-- Add Student Button -->
+  <div style="margin: 20px;">
+    <button (click)="toggleAddForm()" 
+            style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer;">
+      {{showAddForm ? 'Cancel' : 'Add Student'}}
+    </button>
+  </div>
+  
+  <!-- Add Student Form -->
+  <div *ngIf="showAddForm" style="margin: 20px auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px; width: 300px;">
+    <h3>Add New Student</h3>
+    <div style="margin: 10px 0;">
+      <input type="text" 
+             [(ngModel)]="newStudent.name" 
+             placeholder="Name" 
+             style="width: 100%; padding: 8px; margin: 5px 0; box-sizing: border-box;">
+    </div>
+    <div style="margin: 10px 0;">
+      <input type="email" 
+             [(ngModel)]="newStudent.email" 
+             placeholder="Email" 
+             style="width: 100%; padding: 8px; margin: 5px 0; box-sizing: border-box;">
+    </div>
+    <div style="margin: 10px 0;">
+      <input type="number" 
+             [(ngModel)]="newStudent.marks" 
+             placeholder="Marks" 
+             style="width: 100%; padding: 8px; margin: 5px 0; box-sizing: border-box;">
+    </div>
+    <div style="margin: 15px 0;">
+      <button (click)="addStudent()" 
+              style="padding: 10px 20px; background-color: #008CBA; color: white; border: none; border-radius: 4px; cursor: pointer; margin-right: 10px;">
+        Save
+      </button>
+      <button (click)="cancelAdd()" 
+              style="padding: 10px 20px; background-color: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer;">
+        Cancel
+      </button>
+    </div>
+  </div>
+
+  <table border="1" align="center">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Marks</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let s of students">
+        <td>{{ s.name }}</td>
+        <td>{{ s.email }}</td>
+        <td>{{ s.marks }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
+  <button (click)="prevPage()">Prev</button>
+  <span> Page: {{page}} </span>
+  <button (click)="nextPage()">Next</button>
+</div>
